@@ -1,0 +1,10 @@
+"AddonInfo"
+{
+	"name"			"Half-Life: Renaissance"
+	"version"		"1.1"
+	"up_date"		"26th July 2008"
+	"author_name"		"Silverlan"
+	"author_email"		"Silverlan@gmx.de"
+	"author_url"		""
+	"info"			""
+}
