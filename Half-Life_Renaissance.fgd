@@ -1,0 +1,523 @@
+// This is a Forge Game Data File for Hammer.
+// Add this to the Game Data Files in the options of Hammer, then the SNPCs will appear in your Point-Based Entity list.
+
+@include "base.fgd"
+@include "halflife2.fgd"
+
+// Base Classes
+
+@BaseClass base(BaseNPC) = NPCPlus
+[
+	wander(choices) : "Wandering" : 0 : 
+        "If set to yes, this NPC will wander around randomly if it doesn't see an enemy. "=
+	[
+		0 : "No"
+		1 : "Yes"
+	]
+	input followtarget_(void) : "Use this input to make the SNPC follow another entity. Add the entity targetname behind the underline."
+	input stopfollowtarget(void) : "Use this input to make the SNPC stop following an entity."
+
+	TriggerTarget(target_destination) : "Trigger Target" : "" :
+	 "[OBSOLETE] The event to trigger when the TriggerCondition is met. Used by monsters."
+
+	TriggerCondition(choices) : "Trigger Condition" : 0 : 
+        "[OBSOLETE] This controls the condition under which a monster will trigger its TriggerTarget."=
+	[
+		0 : "No Trigger"
+		1 : "See Player, Mad at Player"
+		2 : "Take Damage"
+		3 : "50% Health Remaining"
+		4 : "Death"
+		7 : "Hear World"
+		8 : "Hear Player"
+		9 : "Hear Combat"
+		10 : "See Player Unconditional"
+		11 : "See Player, Not In Combat"
+	]
+
+	spawnflags(Flags) = 
+	[
+		1 : "Wait Till Seen" : 0
+		2 : "Gag (No IDLE sounds until angry)" : 0
+		4 : "Fall to ground (unchecked means *teleport* to ground)" : 1
+		8 : "Drop Healthkit" : 0
+		16 : "Efficient - Don't acquire enemies or avoid obstacles" : 0
+		//32 : "Squad Leader" : 0
+		64 : "Ignore Player" : 0
+		128: "Wait For Script" : 0
+		256: "Long Visibility/Shoot" : 0
+		512: "Fade Corpse" : 1
+		1024: "Think outside PVS" : 0
+		2048: "Template NPC (used by npc_maker, will not spawn)" : 0
+		4096: "Do Alternate collision for this NPC (player avoidance)" : 0
+		8192: "Don't drop weapons" : 0
+		16384 : "Ignore player push (dont give way to player)" : 0
+	]
+]
+
+// NPCs
+
+@NPCClass base(NPCPlus) studio("models/controller.mdl") = monster_alien_controller : "Alien Controller"
+[
+	input startflyingpath(void) : "Use this input to make the SNPC fly along the given path. "
+	input stopflyingpath(void) : "Use this input to make the SNPC stop flying along the given path. "
+
+	health(integer) : "Health" : 170 : 
+        "Health of this NPC. " +
+	"Default: 170"
+
+	flyspeed(integer) : "Speed" : 45 : 
+        "Flying speed of this NPC. " +
+	"Default: 45"
+]
+
+@NPCClass base(NPCPlus) studio("models/agrunt.mdl") = monster_alien_grunt : "Alien Grunt"
+[
+	health(integer) : "Health" : 220 : 
+        "Health of this NPC. " +
+	"Default: 220"
+]
+
+@NPCClass base(NPCPlus) studio("models/islave.mdl") = monster_alien_slave : "Alien Slave"
+[
+	health(integer) : "Health" : 150 : 
+        "Health of this NPC. " +
+	"Default: 150"
+]
+
+@NPCClass base(NPCPlus) studio("models/baby_headcrab.mdl") = monster_babycrab : "Baby Headcrab"
+[
+	health(integer) : "Health" : 8 : 
+        "Health of this NPC. " +
+	"Default: 8"
+]
+
+@NPCClass base(BaseNPC) studio("models/ba_hl1.mdl") = monster_barney : "Barney"
+[
+	health(integer) : "Health" : 120 : 
+        "Health of this NPC. " +
+	"Default: 120"
+
+	spawnflags(Flags) = 
+	[
+		1 : "Wait Till Seen" : 0
+		2 : "Gag (No IDLE sounds until angry)" : 0
+		16 : "Efficient - Don't acquire enemies or avoid obstacles" : 0
+		128: "Wait For Script" : 0
+		512: "Fade Corpse" : 1
+		1024: "Think outside PVS" : 0
+		2048: "Template NPC (used by npc_maker, will not spawn)" : 0
+		4096: "Do Alternate collision for this NPC (player avoidance)" : 0
+		8192: "Don't drop weapons" : 0
+		65536: "Pre-Disaster" 	: 0
+	]
+	input followtarget_(void) : "Use this input to make the SNPC follow another entity. Add the entity targetname behind the underline."
+	input stopfollowtarget(void) : "Use this input to make the SNPC stop following an entity."
+
+	TriggerTarget(target_destination) : "Trigger Target" : "" :
+	 "[OBSOLETE] The event to trigger when the TriggerCondition is met. Used by monsters."
+
+	TriggerCondition(choices) : "Trigger Condition" : 0 : 
+        "[OBSOLETE] This controls the condition under which a monster will trigger its TriggerTarget."=
+	[
+		0 : "No Trigger"
+		1 : "See Player, Mad at Player"
+		2 : "Take Damage"
+		3 : "50% Health Remaining"
+		4 : "Death"
+		7 : "Hear World"
+		8 : "Hear Player"
+		9 : "Hear Combat"
+		10 : "See Player Unconditional"
+		11 : "See Player, Not In Combat"
+	]
+]
+
+@NPCClass base(NPCPlus) studio("models/bullsquid.mdl") = monster_bullchicken : "Bullsquid"
+[
+	health(integer) : "Health" : 160 : 
+        "Health of this NPC. " +
+	"Default: 160"
+]
+
+@NPCClass base(NPCPlus) studio("models/garg.mdl") = monster_gargantua : "Gargantua"
+[
+	immune(choices) : "Immune against bullets" : 0 : 
+        "If set to yes, this NPC will take no damage by bullets. "=
+	[
+		0 : "No"
+		1 : "Yes"
+	]
+
+	health(integer) : "Health" : 1800 : 
+        "Health of this NPC. " +
+	"Default: 1800"
+]
+
+@NPCClass base(BaseNPC) studio("models/hlgm.mdl") = monster_gman : "GMan"
+[
+	health(integer) : "Health" : 120 : 
+        "Health of this NPC. " +
+	"Default: 120"
+
+	spawnflags(Flags) = 
+	[
+		1 : "Wait Till Seen" : 0
+		2 : "Gag (No IDLE sounds until angry)" : 0
+		16 : "Efficient - Don't acquire enemies or avoid obstacles" : 0
+		128: "Wait For Script" : 0
+		512: "Fade Corpse" : 1
+		1024: "Think outside PVS" : 0
+		2048: "Template NPC (used by npc_maker, will not spawn)" : 0
+		4096: "Do Alternate collision for this NPC (player avoidance)" : 0
+	]
+]
+
+@NPCClass base(NPCPlus) studio("models/big_mom.mdl") = monster_bigmomma : "Gonarch"
+[
+	bcrabs(choices) : "Can spawn baby headcrabs" : 1 : 
+        "If set to yes, this NPC will automatically spawn baby headcrabs when it sees an enemy. "=
+	[
+		0 : "No"
+		1 : "Yes"
+	]
+
+//	r_body(choices) : "Remove body" : 1 : 
+//      "If set to yes, this NPCs body will be removed 23 seconds after death. "=
+//	[
+//		0 : "No"
+//		1 : "Yes"
+//	]
+
+	health(integer) : "Health" : 1400 : 
+        "Health of this NPC. " +
+	"Default: 1400"
+]
+
+@NPCClass base(NPCPlus) studio("models/hl1_crab.mdl") = monster_headcrab : "Headcrab"
+[
+	health(integer) : "Health" : 14 : 
+        "Health of this NPC. " +
+	"Default: 14"
+]
+
+@NPCClass base(NPCPlus) studio("models/houndeye.mdl") = monster_houndeye : "Houndeye"
+[
+	health(integer) : "Health" : 100 : 
+        "Health of this NPC. " +
+	"Default: 100"
+]
+
+@NPCClass base(BaseNPC) studio("models/hgrunt.mdl") = monster_human_grunt : "Human Grunt"
+[
+	health(integer) : "Health" : 70 : 
+        "Health of this NPC. " +
+	"Default: 70"
+
+	 weapons(Choices) : "Weapons" : 1 =
+	[
+		1 : "MP5"
+		3 : "MP5 + HG"
+		5 : "MP5 + GL"
+		8 : "Shotgun"
+		10 : "Shotgun + HG"
+	] 
+	TriggerTarget(target_destination) : "Trigger Target" : "" :
+	 "[OBSOLETE] The event to trigger when the TriggerCondition is met. Used by monsters."
+
+	TriggerCondition(choices) : "Trigger Condition" : 0 : 
+        "[OBSOLETE] This controls the condition under which a monster will trigger its TriggerTarget."=
+	[
+		0 : "No Trigger"
+		1 : "See Player, Mad at Player"
+		2 : "Take Damage"
+		3 : "50% Health Remaining"
+		4 : "Death"
+		7 : "Hear World"
+		8 : "Hear Player"
+		9 : "Hear Combat"
+		10 : "See Player Unconditional"
+		11 : "See Player, Not In Combat"
+	]
+]
+
+@NPCClass base(BaseNPC) studio("models/scientist.mdl") = monster_scientist : "Scientist"
+[
+	body(integer) : "Body" : -1 : "-1 = Random\n0 = Glasses\n1 = Einstein\n2 = Luther\n3 = Slick"
+	health(integer) : "Health" : 80 : 
+        "Health of this NPC. " +
+	"Default: 80"
+
+	spawnflags(Flags) = 
+	[
+		1 : "Wait Till Seen" : 0
+		2 : "Gag (No IDLE sounds until angry)" : 0
+		16 : "Efficient - Don't acquire enemies or avoid obstacles" : 0
+		128: "Wait For Script" : 0
+		512: "Fade Corpse" : 1
+		1024: "Think outside PVS" : 0
+		2048: "Template NPC (used by npc_maker, will not spawn)" : 0
+		4096: "Do Alternate collision for this NPC (player avoidance)" : 0
+		65536: "Pre-Disaster" 	: 0
+	]
+	input followtarget_(void) : "Use this input to make the SNPC follow another entity. Add the entity targetname behind the underline."
+	input stopfollowtarget(void) : "Use this input to make the SNPC stop following an entity."
+	TriggerTarget(target_destination) : "Trigger Target" : "" :
+	 "[OBSOLETE] The event to trigger when the TriggerCondition is met. Used by monsters."
+
+	TriggerCondition(choices) : "Trigger Condition" : 0 : 
+        "[OBSOLETE] This controls the condition under which a monster will trigger its TriggerTarget."=
+	[
+		0 : "No Trigger"
+		1 : "See Player, Mad at Player"
+		2 : "Take Damage"
+		3 : "50% Health Remaining"
+		4 : "Death"
+		7 : "Hear World"
+		8 : "Hear Player"
+		9 : "Hear Combat"
+		10 : "See Player Unconditional"
+		11 : "See Player, Not In Combat"
+	]
+]
+
+@NPCClass base(BaseNPC) studio("models/w_squeak.mdl") = monster_snark : "Snark"
+[
+	health(integer) : "Health" : 8 : 
+        "Health of this NPC. " +
+	"Default: 8"
+
+	blast(integer) : "Blast Damage" : 12 : 
+        "Ammount of damage to do to near enemies when exploding. " +
+	"Default: 12"
+
+	blasttime(integer) : "Blast Delay" : 16 : 
+        "The amount of time in seconds until the snark explodes. " +
+	"The flag 'Don't self-destruct' has to be unchecked. " +
+	"Default: 16"
+	spawnflags(Flags) = 
+	[
+		1 : "Wait Till Seen" : 0
+		2 : "Gag (No IDLE sounds until angry)" : 0
+		4 : "Fall to ground (unchecked means *teleport* to ground)" : 1
+		8 : "Drop Healthkit" : 0
+		16 : "Efficient - Don't acquire enemies or avoid obstacles" : 0
+		128: "Wait For Script" : 0
+		256: "Long Visibility/Shoot" : 0
+		512: "Fade Corpse" : 1
+		1024: "Think outside PVS" : 0
+		2048: "Template NPC (used by npc_maker, will not spawn)" : 0
+		4096: "Do Alternate collision for this NPC (player avoidance)" : 0
+		8192: "Don't drop weapons" : 0
+		16384 : "Ignore player push (dont give way to player)" : 0
+		32768 : "Don't self-destruct" : 0
+	]
+	TriggerTarget(target_destination) : "Trigger Target" : "" :
+	 "[OBSOLETE] The event to trigger when the TriggerCondition is met. Used by monsters."
+
+	TriggerCondition(choices) : "Trigger Condition" : 0 : 
+        "[OBSOLETE] This controls the condition under which a monster will trigger its TriggerTarget."=
+	[
+		0 : "No Trigger"
+		1 : "See Player, Mad at Player"
+		2 : "Take Damage"
+		3 : "50% Health Remaining"
+		4 : "Death"
+		7 : "Hear World"
+		8 : "Hear Player"
+		9 : "Hear Combat"
+		10 : "See Player Unconditional"
+		11 : "See Player, Not In Combat"
+	]
+]
+
+//@NPCClass base(NPCPlus) studio("models/tentacle3.mdl") = monster_tentacle : "Tentacle"
+//[
+//	health(integer) : "Health" : 600 : 
+//        "Health of this NPC. " +
+//	"Default: 600"
+//
+//	startlvl(choices) : "Start on Level" : 0 : 
+//        "Set the level the tentacle starts on. "=
+//	[
+//		0 : "Floor"
+//		1 : "Level 1"
+//		2 : "Level 2"
+//		3 : "Level 3"
+//	]
+//]
+
+@NPCClass base(NPCPlus) studio("models/panthereye.mdl") = monster_panthereye : "Panthereye"
+[
+	health(integer) : "Health" : 160 : 
+        "Health of this NPC. " +
+	"Default: 160"
+]
+
+@NPCClass base(NPCPlus) studio("models/Zombie/para.mdl") = monster_parasite : "Parasite"
+[
+	health(integer) : "Health" : 70 : 
+        "Health of this NPC. " +
+	"Default: 70"
+]
+
+@NPCClass base(NPCPlus) studio("models/zombie.mdl") = monster_zombie : "Zombie"
+[
+	health(integer) : "Health" : 180 : 
+        "Health of this NPC. " +
+	"Default: 180"
+]
+
+@NPCClass base(NPCPlus) studio("models/ichthyosaur.mdl") = monster_ichthyosaur : "Ichthyosaur"
+[
+	health(integer) : "Health" : 200 : 
+        "Health of this NPC. " +
+	"Default: 200"
+]
+
+@NPCClass base(NPCPlus) studio("models/archer.mdl") = monster_archer : "Archer"
+[
+	health(integer) : "Health" : 60 : 
+        "Health of this NPC. " +
+	"Default: 60"
+]
+
+@NPCClass base(NPCPlus) studio("models/hassassin.mdl") = monster_human_assassin : "Assassin"
+[
+	health(integer) : "Health" : 80 : 
+        "Health of this NPC. " +
+	"Default: 80"
+]
+
+@NPCClass base(BaseNPC) studio("models/roach.mdl") = monster_cockroach : "Cockroach"
+[
+	health(integer) : "Health" : 2 : 
+        "Health of this NPC. " +
+	"Default: 2"
+]
+
+// Weapons
+@PointClass base(Weapon) studio("models/w_9mmhandgun.mdl") = weapon_9mmhandgun : "9mm Handgun"
+[
+]
+
+@PointClass base(Weapon) studio("models/w_9mmAR.mdl") = weapon_9mmAR : "MP5"
+[
+]
+
+@PointClass base(Weapon) studio("models/w_egon.mdl") = weapon_egon : "Egon"
+[
+]
+
+@PointClass base(Weapon) studio("models/weapons/w_gauss.mdl") = weapon_gauss : "Gauss cannon"
+[
+]
+
+@PointClass base(Weapon) studio("models/w_tripmine.mdl") = weapon_tripmine : "Tripmine"
+[
+]
+
+@PointClass base(Weapon) studio("models/w_grenade.mdl") = weapon_handgrenade : "Handgrenade"
+[
+]
+
+@PointClass base(Weapon) studio("models/w_satchel.mdl") = weapon_satchel : "Satchel"
+[
+]
+
+@PointClass base(Weapon) studio("models/v_hgun.mdl") = weapon_hornetgun : "Hornet gun"
+[
+]
+
+@PointClass base(Weapon) studio("models/w_SQKNEST.mdl") = weapon_snark : "Snark gun"
+[
+	//ammo(integer) : "Ammunition" : 8 : 	// Doesn't work yet
+       // "Ammount of snarks the player should get when he picks up this weapon. " +
+	//"Default: 8"
+]
+
+// Ammunition
+@PointClass base(Item) studio("models/w_9mmARclip.mdl")= ammo_9mmAR : "9MM Ammunition Clip" []
+@PointClass base(Item) studio("models/w_chainammo.mdl")= ammo_9mmbox : "9MM Ammunition Box" []
+@PointClass base(Item) studio("models/w_9mmclip.mdl")= ammo_9mmclip : "9MM Ammunition" []
+@PointClass base(Item) studio("models/w_ARgrenade.mdl")= ammo_argrenades : "MP5 Grenade Ammunition" []
+@PointClass base(Item) studio("models/w_357ammo.mdl")= ammo_357 : "357 Ammunition" []
+@PointClass base(Item) studio("models/w_shotbox.mdl")= ammo_buckshot : "Buckshot Ammunition" []
+@PointClass base(Item) studio("models/w_crossbow_clip.mdl")= ammo_crossbow : "Crossbow Ammunition" []
+@PointClass base(Item) studio("models/w_gaussammo.mdl")= ammo_gaussclip : "Gauss cannon Ammunition" []
+@PointClass base(Item) studio("models/w_9mmclip.mdl")= ammo_mp5clip : "MP5 Ammunition" []
+@PointClass base(Item) studio("models/w_ARgrenade.mdl")= ammo_mp5grenades : "MP5 Grenade Ammunition" []
+@PointClass base(Item) studio("models/w_rpgammo.mdl")= ammo_rpgclip : "RPG Ammunition" []
+
+// Other
+
+@PointClass base(Targetname, Angles, Shadow) studio("models/w_adrenaline.mdl") = item_antidote : "Antidote"
+[
+	parentname(target_destination) : "Parent" : : "The name of this entity's parent in the movement hierarchy. Entities with parents move with their parent."
+]
+
+@PointClass base(Targetname, Angles, Shadow) studio("models/w_longjump.mdl") = item_longjump : "Longjump module"
+[
+	parentname(target_destination) : "Parent" : : "The name of this entity's parent in the movement hierarchy. Entities with parents move with their parent."
+]
+
+@PointClass base(Targetname, Angles, Shadow) studio("models/tree.mdl") = xen_tree : "Xen Tree"
+[
+	parentname(target_destination) : "Parent" : : "The name of this entity's parent in the movement hierarchy. Entities with parents move with their parent."
+]
+
+@PointClass base(Targetname, Angles, Shadow) studio("models/light.mdl") = xen_plantlight : "Xen Plantlight"
+[
+	parentname(target_destination) : "Parent" : : "The name of this entity's parent in the movement hierarchy. Entities with parents move with their parent."
+]
+
+@PointClass base(Targetname, Angles, Shadow) studio("models/fungus(small).mdl") = xen_spore_small : "Xen Spore(small)"
+[
+	parentname(target_destination) : "Parent" : : "The name of this entity's parent in the movement hierarchy. Entities with parents move with their parent."
+]
+
+@PointClass base(Targetname, Angles, Shadow) studio("models/fungus.mdl") = xen_spore_medium : "Xen Spore(medium)"
+[
+	parentname(target_destination) : "Parent" : : "The name of this entity's parent in the movement hierarchy. Entities with parents move with their parent."
+]
+
+@PointClass base(Targetname, Angles, Shadow) studio("models/fungus(large).mdl") = xen_spore_large : "Xen Spore(large)"
+[
+	parentname(target_destination) : "Parent" : : "The name of this entity's parent in the movement hierarchy. Entities with parents move with their parent."
+]
+
+@PointClass base(BaseScripted, Angles, DXLevelChoice) studio("models/editor/scriptedsequence.mdl") sphere(m_flRadius) = scripted_monster_sequence :
+	"Grabs an NPC and makes them play a specified set of animations. The NPC can be told to move to the scripted sequence position or can "+
+	"be told to play the script wherever they currently are. "+
+	"Multiple scripted sequences of the same name will frame-synchronize in the action animation once all the actors have moved to position. "+
+	"This allows tight interaction between actors (one actor grabbing another, hitting them, etc.) The flow is as follows:\n\n"+
+	"1) Move to position using the specified movement animation. If 'Move to Position' is set to NONE, skip to step 2.\n"+
+	"2) If forced to wait for another actor to move to position, play the pre-action idle animation, otherwise skip to step 3. If there is no pre-action idle specified, ACT_IDLE is used.\n"+
+	"3) Fire the OnBeginSequence output.\n"+
+	"4) Play the action animation. If no action animation is specified, skip to step 5.\n"+
+	"5) Play the post-action idle animation. If none is specified, skip to step 6. If the 'Loop in Post Idle' spawnflag is set, keep playing the post-action idle until the script is cancelled. If no post-action idle animation is specified, ACT_IDLE is used.\n"+
+	"6) Fire the OnEndSequence output.\n"+
+	"7) If a next script to play is specified, hand the NPC to the next script and repeat this process for that script.\n\n"+
+	"The MoveToPosition input runs steps 1 and 2, then waits while playing the pre-action idle animation until the BeginSequence input is received.\n\n"+
+	"If the sequence has motion extraction in it, set the 'Don't Teleport NPC On End' spawnflag."
+[
+	spawnflags(Flags) = 
+	[
+		4 : "Repeatable" : 0
+		8 : "Leave Corpse" : 0
+		16 : "Start on Spawn" : 0
+		32: "No Interruptions" : 0
+		64: "Override AI" : 0
+		128: "Don't Teleport NPC On End" : 0
+		256: "Loop in Post Idle" : 0
+		512: "Priority Script" : 0
+		4096: "Allow actor death" : 0
+	]
+
+	
+	onplayerdeath(choices) : "On player death" : 0 : "What should this entity do if the player dies" =
+	[
+		0 : "Do Nothing"
+		1 : "Cancel Script and return to AI"
+	]
+]
